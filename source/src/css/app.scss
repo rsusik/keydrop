@@ -1,0 +1,121 @@
+// app global css in SCSS form
+.kb-row {
+    --rowWidth: 100%;
+    width: var(--rowWidth);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.footer {
+    border-top: 1px solid #dadada;
+}
+
+.footer,
+.btn {
+    background-color: #fafafa;
+    color: black;
+}
+
+.btn>.btn-original {
+    font-size: 6pt;
+    position: absolute;
+    top: 0;
+    right: 4pt;
+    margin: 0;
+    padding: 0;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: margin 0.15s, padding 0.15s, font-size 0.15s, right 0.15s, top 0.15s;
+}
+
+.btn.original {
+    color: transparent;
+}
+
+@media (pointer:coarse) {
+    /* TOUCH SCREEN */
+}
+
+.btn.original>.btn-original {
+    font-size: 22pt;
+    top: -90%;
+    /*-4pt;*/
+    margin: 0 auto;
+    right: calc(50% - 8pt - 8pt);
+    /* 7pt;*/
+    background-color: #fafafa;
+    border: 1px solid grey;
+    border-radius: 5pt;
+    padding: 0 10pt;
+}
+
+.btn {
+    text-align: center;
+    bborder-radius: 5pt;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.kb-row,
+.btn-row1,
+.btn-row2,
+.btn-row3,
+.btn-row4 {
+    height: 38pt;
+}
+
+.btn-row1 {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: calc(var(--rowWidth) / 10);
+}
+
+.btn-row2 {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: calc(var(--rowWidth) / 9);
+}
+
+.btn-row3 {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: calc(var(--rowWidth) / 9);
+}
+
+.btn-shift {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: calc(var(--rowWidth) / 7);
+}
+
+.btn-row4 {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: calc(var(--rowWidth) / 9);
+}
+
+.btn-space {
+    padding: 0;
+    margin: 0;
+    display: block;
+    width: calc(var(--rowWidth) / 2.25);
+}
