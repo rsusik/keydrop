@@ -18,7 +18,7 @@
         class="" 
         style="position: absolute; right: 10pt; top: 20pt;" 
       />
-      <textarea v-model="data" class="shadow-5 q-pa-md q-ma-md" style="overflow: scroll; width: 100%; min-height: 300pt; ;">
+      <textarea readonly v-model="data" class="shadow-5 q-pa-md q-ma-md" style="overflow: scroll; width: 100%; min-height: 300pt; ;">
         
       </textarea>
       </div>
@@ -67,6 +67,10 @@ export default defineComponent({
         'rating': localStorage.getItem('rating'),
         'speed': localStorage.getItem('speed'),
         'typos': localStorage.getItem('typos'),
+        'age': localStorage.getItem('age'),
+        'sex': localStorage.getItem('sex'),
+        'hand': localStorage.getItem('hand'),
+        'phone': localStorage.getItem('phone'),
         'tests': tests
       }, null, '  ')
       if (text == undefined) {

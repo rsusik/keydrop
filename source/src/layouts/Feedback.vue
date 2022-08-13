@@ -6,9 +6,14 @@
 
     <q-page-container class="q-px-md">
       <h1 style="margin-top: 0;">Feedback</h1>
+      <p>
+        All the data will be used only for research purposes. 
+        We do not collect personal data; all the information is stored anonymously.
+        <b>We appreciate your effort. Thank you!</b>
+      </p>
       <q-form @submit="onSubmit">
         <div>
-          <h2>Rate your experience with keydrop (leftmost&nbsp;-&nbsp;very&nbsp;bad,&nbsp;rightmost&nbsp;-&nbsp;very good).</h2>
+          <h2>1. Rate your experience with Keydrop (leftmost&nbsp;-&nbsp;very&nbsp;bad,&nbsp;rightmost&nbsp;-&nbsp;very good).</h2>
           <q-rating
             v-model="rating"
             :max="5"
@@ -19,7 +24,7 @@
         </div>
         <div>
           <h2>
-            Do you think keydrop speeds up typing on your phone
+            2. Do you think Keydrop speeds up typing on your phone
             (1&nbsp;-&nbsp;definitely&nbsp;not,&nbsp;5&nbsp;-&nbsp;definitely&nbsp;yes)?
           </h2>
           <div class="q-gutter-sm">
@@ -32,7 +37,7 @@
         </div>
         <div>
           <h2>
-            Do you think keydrop limits the number of typos
+            3. Do you think Keydrop limits the number of typos
             (1&nbsp;-&nbsp;definitely&nbsp;not,&nbsp;5&nbsp;-&nbsp;definitely&nbsp;yes)?
           </h2>
           <div class="q-gutter-sm">
@@ -43,14 +48,51 @@
             <q-radio v-model="typos" val="4" label="definitely yes" />
           </div>
         </div>
+        <div>
+          <h2>
+            4. What is your age?
+          </h2>
+          <div class="q-gutter-sm">
+            <q-input type="number" outlined v-model="age" />
+          </div>
+        </div>
+        <div>
+          <h2>
+            5. What is your sex?
+          </h2>
+          <div class="q-gutter-sm">
+            <q-radio v-model="sex" val="F" label="Female" />
+            <q-radio v-model="sex" val="M" label="Male" />
+          </div>
+        </div>
+        <div>
+          <h2>
+            6. Which is your dominant hand?
+          </h2>
+          <div class="q-gutter-sm">
+            <q-radio v-model="hand" val="left" label="Left" />
+            <q-radio v-model="hand" val="right" label="Right" />
+          </div>
+        </div>
+
+        <div>
+          <h2>
+            7. What is you phone model?
+          </h2>
+          <div class="q-gutter-sm">
+            <q-input v-model="phone" label="Phone model (e.g. Redmi Note 10 Pro)" outlined />
+          </div>
+        </div>
+        
         <q-separator class="q-ma-md" />
         <div class="text-center">
           <q-btn 
-            :class="{disabled: !(!!rating && !!speed && !!typos)}"
+            :class="{disabled: !(!!rating && !!speed && !!typos && !!age && !!sex && !!hand && !!phone)}"
             to="/"
-            label="Done" type="submit" color="primary"
+            label="Save" type="submit" color="primary"
+            style="margin-bottom: 12pt;"
           />
-          <div v-if="!(!!rating && !!speed && !!typos)" class="text-center" style="color:#888;">(fill in all fileds)</div>
+          <div v-if="!(!!rating && !!speed && !!typos && !!age && !!sex && !!hand && !!phone)" class="text-center" style="color:#888;">(fill in all fields)</div>
         </div>
       </q-form>
     </q-page-container>
@@ -85,6 +127,10 @@ export default defineComponent({
       rating: undefined,
       speed: undefined,
       typos: undefined,
+      age: undefined,
+      sex: undefined,
+      hand: undefined,
+      phone: undefined,
       icons: [
         'sentiment_very_dissatisfied',
         'sentiment_dissatisfied',
@@ -96,6 +142,30 @@ export default defineComponent({
   },
 
   watch: {
+    age: function (val) {
+      if (val != undefined) {
+        localStorage.setItem('age', val);
+      }
+    },
+
+    sex: function (val) {
+      if (val != undefined) {
+        localStorage.setItem('sex', val);
+      }
+    },
+
+    hand: function (val) {
+      if (val != undefined) {
+        localStorage.setItem('hand', val);
+      }
+    },
+
+    phone: function (val) {
+      if (val != undefined) {
+        localStorage.setItem('phone', val);
+      }
+    },
+
     rating: function (val) {
       if (val != undefined) {
         localStorage.setItem('rating', val);
@@ -123,6 +193,10 @@ export default defineComponent({
     this.rating = localStorage.getItem('rating')
     this.speed = localStorage.getItem('speed')
     this.typos = localStorage.getItem('typos')
+    this.age = localStorage.getItem('age')
+    this.sex = localStorage.getItem('sex')
+    this.hand = localStorage.getItem('hand')
+    this.phone = localStorage.getItem('phone')
   },
 
   mounted() {
