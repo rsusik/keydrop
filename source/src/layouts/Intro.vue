@@ -64,21 +64,19 @@
         and send the results back to us <a :href="`mailto:${em}`">{{em}}</a>.
       </p>
       <p>
-        A test is prepared to evaluate the speed and correctness of typing.
-        The test is a simplified typer game where the words fall from top 
-        to bottom of the screen. 
-        User should enter the words before they fall. 
-        If the word is entered before it falls, 
-        the user gets points; otherwise, receives negative points. 
-        The user should attempt to write the words as fast as possible.
+        A test is prepared to evaluate the speed and correctness of typing. 
+        The test is straightforward. 
+        The application shows the sentence, and the participant has to rewrite it using the chosen keyboard. 
+        To point is to try to rewrite the text as fast as possible with a minimal number of errors. 
+        If the input differs from the given sentence, then the background of the corresponding part is highlighted in red, otherwise in green, as shown below.
       </p>
       <div class="col-6">
-        <q-img src="game.png" no-native-menu style="max-width: 456px;">
+        <q-img src="game2.png" no-native-menu style="max-width: 456px;">
         </q-img>
       </div>
       <h2>Demo</h2>
       <p>
-        Train typing with keydrop in <router-link to="/write">this demo</router-link>
+        Train typing with the Keydrop in <router-link to="/write">this demo</router-link>
         before starting the test.
       </p>
     </q-page-container>

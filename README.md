@@ -8,13 +8,16 @@
 
 ## About
 
-Keydrop is a project that aims to create a keyboard that adapts to the user. The idea is to hide the keys which are not going to be pressed and display a different key in their place.
+Keydrop is a project that aims to create a keyboard that adapts to the user. The idea is to hide the keys which are unlikely to be pressed and display a different key (that is more likely to be pressed) in their place.
 
-This is project is a prototype done for research purpose, it has minimal error checking and some bugs are possible. There is no warranty, you use it at your own risk.
+This project is a prototype of a keyboard developed for research purposes. 
+It has minimal error checking, and some bugs are possible. 
+There is no warranty, and you use it at your own risk.
 
 ## Requirements
 
-To run the keyboard only web browser is needed. It is recommended to install the application on phone.
+To run the application, only a web browser is needed, 
+but installing the application on the phone is recommended.
 
 For code execution following requirements needs to be met:
 
@@ -25,8 +28,8 @@ For code execution following requirements needs to be met:
 
 ## Testing
 
-We appreciate everyone who help us in test performing. If you are interested please go the link at: TODO
+We appreciate everyone who helps us in testing. If you are interested, please go to the link at: TODO
 
-Once you complete the test please send us the results at robert.susik@p.lodz.pl.
+Once you complete the test, please send us the results at robert.susik@p.lodz.pl.
 
 

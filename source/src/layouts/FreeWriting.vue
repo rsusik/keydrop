@@ -107,6 +107,10 @@ export default defineComponent({
   100%  {color: blue;}
 }
 
+.q-toolbar {
+  padding: 0 0;
+}
+
 .blink {
   animation-name: anim_blink;
   animation-delay: 1s;

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="kb-row" style="">
+  <div class="kb-container">
+    <div class="kb-row kb-row-first">
       <input class="" style="background-color: transparent; box-shadow: none; border: 0;" 
         type="button" 
         :value="leftWord" 
@@ -21,8 +21,8 @@
       <!--q-btn v-for="key in row" :key="key" class="btn" :label="key.label" @click="key.action(key)" :style="key.style" :class="key.class" /-->
       <div v-for="key in row" 
         :key="key" 
-        class="btn" 
-        style="position: relative"
+        class="btn"  
+        style="position: relative;"
         @mousedown="original_mousedown(key)"
         @mouseup="original_mouseup(key)"
         @mouseleave="original_mouseleave(key)"
@@ -32,7 +32,7 @@
         :style="key.style"
         :class="[key.class, {'original': key.original_show}]"
       >
-        {{key.original_label.toUpperCase()}}
+        <div>{{key.original_label.toUpperCase()}}</div>
         <div 
           class="btn-original"
           :style="{display: key.key==key.original_key?'none':'block'}"
@@ -626,7 +626,6 @@ export default defineComponent({
         active_keys = Object.keys(this.key_neighbors)
       } else if (this.lettersLeft.size == 1 ) {
         // jezeli zostala tylko jedna litera
-        console.log(JSON.stringify(active_keys))
       }
       let active_keys_mapped = this.map_keys(active_keys).reverse()
       let tmp_board = this.board.map(a => {return [...a]})
@@ -645,7 +644,6 @@ export default defineComponent({
           class: this.key_style[el].class,
           action: this.key_actions[el],
         }})
-        console.log(key.key, key.original_key)
         
         if (
           tmp_board[key.row][key.col].key == undefined 
@@ -662,7 +660,7 @@ export default defineComponent({
                 if (el.label != key.label) return false
                 return Math.sqrt(Math.pow(key.row - el.row, 2) + Math.pow(key.col - el.col, 2)) <= Math.sqrt(2)
               }).length
-            console.log('liczba na kolejce itp.: ', numberOfNearNeigh)
+            
             if (numberOfNearNeigh > 1 || key.label == key.original_label) {
               tmp_board[key.row][key.col] = {
                 row: key.row,
@@ -676,8 +674,8 @@ export default defineComponent({
                 class: key.class,
                 action: key.action,
               }
-              console.log('dodaje sasiadow: ', neigh.reverse().map((el) => {return [el.key, el.original_key]}))
-              active_keys_mapped.unshift(...neigh.reverse()) // Ten reverse raczej niepotrzebny
+              
+              active_keys_mapped.unshift(...neigh.reverse())
             }
           }
         }

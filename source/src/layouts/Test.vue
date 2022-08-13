@@ -26,7 +26,7 @@
           <!--q-card-section  class="text-grey">
             Type text using below keyboard 
           </q-card-section-->
-          <q-card-section style="font-size: 16pt;" v-html="sentenceDisp" v-if="sentence && sentence.length > 0" />
+          <q-card-section style="font-size: 2em;" v-html="sentenceDisp" v-if="sentence && sentence.length > 0" />
         </q-card>
 
         <div class="counter-wrapper" v-if="startGameDelayCounter>=0">
@@ -39,7 +39,13 @@
         </div>
       </div>
 
-
+      <div v-if="isError">
+        <div class="is-error">
+          <div class="counter" style="color:red;">
+            !
+          </div>
+        </div>
+      </div>
 
     </q-page-container>
 
@@ -126,6 +132,10 @@ export default defineComponent({
       return this.sentenceTimeElapsed ? this.sentenceTimeElapsed.toFixed(1) : 0
     },
 
+    isError: function() {
+      return this.correctCharacters() < this.text.length ? true : false
+    },
+
     sentenceDisp: function () {
       let sentence = this.sentence.toLowerCase()
       let text = this.text.toLowerCase()
@@ -145,7 +155,8 @@ export default defineComponent({
   },
 
   unmounted() {
-    this.gameEnd()
+    console.log('unmounted')
+    this.resetState()
   },
 
   created() {
@@ -242,6 +253,8 @@ export default defineComponent({
         this.sentence = this.sentences[this.sentenceIdx]
         this.sentenceTimeStart = Date.now()
       } else {
+        // display finish screen
+        this.gameFinished = true
         // finish the test
         this.gameEnd()
       }
@@ -287,18 +300,30 @@ export default defineComponent({
       this.gameTimeStop = undefined
       this.completedSentences = undefined
     },
+
+    resetState: function() {
+      console.log('resetState')
+      this.gameFinished = true
+      clearInterval(this.refreshControlsInterval)
+      clearInterval(this.startGameDelayInterval)
+      this.gameFinished = false
+    },
     
     gameEnd: function() {
-      if (this.gameFinished == true) return;
-      this.gameTimeStop = Date.now()
-      // save the result
-      this.logTestScore()
-      // display finish screen
-      this.gameFinished = true
-      // and after 2 seconds move to main menu
-      setTimeout(() => {
-        this.$router.push('/')
-      }, 2000)
+      console.log('gameEnd')
+      if (this.gameFinished == true) {
+        console.log('gameEnd inside if')
+        this.gameTimeStop = Date.now()
+        // save the result
+        this.logTestScore()
+        // reset state
+        this.resetState()
+        // and after 2 seconds move to main menu
+        setTimeout(() => {
+          this.$router.push('/')
+        }, 2000)
+      }
+      
     },
 
     gameStart: function() {
@@ -381,6 +406,12 @@ export default defineComponent({
 .complete {
   width: 100%;
   background-color: red;
+}
+.is-error {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
 }
 .counter-wrapper {
   display: flex;

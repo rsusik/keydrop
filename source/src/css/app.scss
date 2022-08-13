@@ -1,4 +1,8 @@
 // app global css in SCSS form
+.kb-container {
+    padding-bottom: 2pt;
+}
+
 .kb-row {
     --rowWidth: 100%;
     width: var(--rowWidth);
@@ -53,7 +57,10 @@
 }
 
 .btn {
-    text-align: center;
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    text-align: center !important;
     bborder-radius: 5pt;
     -webkit-touch-callout: none;
     /* iOS Safari */
@@ -76,6 +83,10 @@
 .btn-row3,
 .btn-row4 {
     height: 38pt;
+}
+
+.kb-row-first {
+    background-color: #f6f6f6;
 }
 
 .btn-row1 {
