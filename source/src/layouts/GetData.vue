@@ -14,13 +14,16 @@
       </div>
       You can see the full data below:
       <div style="width: 90%; position: relative; margin: 0 auto;">
-      <q-btn @click="toClipboard(data)" label="Copy" icon="content_copy" flat 
-        class="" 
-        style="position: absolute; right: 10pt; top: 20pt;" 
-      />
-      <textarea readonly v-model="data" class="shadow-5 q-pa-md q-ma-md" style="overflow: scroll; width: 100%; min-height: 300pt; ;">
-        
-      </textarea>
+        <q-btn @click="toClipboard(data)" label="Copy" icon="content_copy" flat 
+          class="" 
+          style="position: absolute; right: 10pt; top: 20pt;" 
+        />
+        <textarea readonly v-model="data" class="shadow-5 q-pa-md q-ma-md" style="overflow: scroll; width: 100%; min-height: 300pt; ;">
+          
+        </textarea>
+      </div>
+      <div style="display:flex; align-items:center; justify-content: center; margin-bottom: 15pt;">
+        <q-btn rounded color="red" label="REMOVE DATA" @click="removeDataConfirm" />
       </div>
     </q-page-container>
 
@@ -95,6 +98,30 @@ export default defineComponent({
   },
 
   methods: {
+    removeData: function() {
+      localStorage.removeItem('rating')
+      localStorage.removeItem('speed')
+      localStorage.removeItem('typos')
+      localStorage.removeItem('age')
+      localStorage.removeItem('sex')
+      localStorage.removeItem('hand')
+      localStorage.removeItem('phone')
+      localStorage.removeItem('tests')
+      this.$router.push('/')
+    },
+
+    removeDataConfirm: function() {
+      this.$q.dialog({
+        dark: true,
+        title: 'WARNING',
+        message: 'WARNING: All results will be removed.',
+        cancel: true,
+        persistent: true
+      }).onOk(() => {
+        this.removeData()
+      })
+    },
+
     download: function () {
       if (this.data == undefined) {
         // nothing to download

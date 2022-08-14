@@ -269,9 +269,10 @@ export default defineComponent({
           'original_key': key.original_key,
           'original_label': key.original_label
         }, 
+        'expected_key': this.sentence[this.text.length-1],
         'time': Date.now(),
-        'text': this.text, 
-        'sentence': this.sentence
+        // 'text': this.text, 
+        // 'sentence': this.sentence
       })
       // check if the sentence is completed
       if (this.text.toLowerCase() == this.sentence.toLowerCase()) {
@@ -303,7 +304,6 @@ export default defineComponent({
 
     resetState: function() {
       console.log('resetState')
-      this.gameFinished = true
       clearInterval(this.refreshControlsInterval)
       clearInterval(this.startGameDelayInterval)
       this.gameFinished = false
@@ -316,10 +316,10 @@ export default defineComponent({
         this.gameTimeStop = Date.now()
         // save the result
         this.logTestScore()
-        // reset state
-        this.resetState()
         // and after 2 seconds move to main menu
         setTimeout(() => {
+          // reset state
+          this.resetState()
           this.$router.push('/')
         }, 2000)
       }

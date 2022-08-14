@@ -68,7 +68,7 @@
             <tr>
               <th>Date</th>
               <th>Mode</th>
-              <th>Score</th>
+              <th>Time</th>
             </tr>
           </thead>
           <tbody>
@@ -157,7 +157,7 @@ export default defineComponent({
             }
           }
         })
-        return games.sort((a, b) => {return b.score.overall - a.score.overall})
+        return games.sort((a, b) => {return b.score.overall - a.score.overall}).reverse()
       }
     }
   },
