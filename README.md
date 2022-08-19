@@ -28,7 +28,7 @@ For code execution following requirements needs to be met:
 
 ## Testing
 
-We appreciate everyone who helps us in testing. If you are interested, please go to the link at: TODO
+We appreciate everyone who helps us in testing. If you are interested, please visit a link at TODO
 
 Once you complete the test, please send us the results at robert.susik@p.lodz.pl.
 

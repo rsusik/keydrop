@@ -22,13 +22,12 @@
       </q-banner>
       <router-link 
         class="menu-item intro" 
-        
         to="/intro"
         @click="introRead = true"
       >Introduction</router-link>
       <router-link 
         class="menu-item" 
-        to="/write"
+        to="/demo"
         :class="{'link-disabled': !introRead}"
         @click="demoCompleted = true"
       >Demo
@@ -46,19 +45,58 @@
       <router-link 
         class="menu-item" 
         to="/feedback"
-        v-if="games.length > 0"
+        v-if="testCompleted"
       >Feedback</router-link>
-      <!--div style="text-align: center;">Is mobile: {{this.$q.platform.is.mobile}}</div-->
-      <!--a href="#" 
-        v-if="games.length > 0 && canDownload" 
-        @click="download" 
-        class="menu-item"
-      >GET DATA</a-->
       <router-link 
         v-if="games.length > 0 && canDownload" 
         class="menu-item" 
         to="/getdata"
       >GET DATA</router-link>
+
+      <q-banner 
+        v-if="!introRead"
+        class="q-mx-xl q-my-md bg-primary text-white rounded-borders">
+        <template v-slot:avatar>
+          <q-icon name="info" color="white" />
+        </template>
+        Please read the introduction to continue
+      </q-banner>
+
+      <q-banner 
+        v-if="!demoCompleted && introRead"
+        class="q-mx-xl q-my-md bg-primary text-white rounded-borders">
+        <template v-slot:avatar>
+          <q-icon name="info" color="white" />
+        </template>
+        Please check the demo to continue
+      </q-banner>
+
+      <q-banner 
+        v-if="!testCompleted && demoCompleted"
+        class="q-mx-xl q-my-md bg-primary text-white rounded-borders">
+        <template v-slot:avatar>
+          <q-icon name="info" color="white" />
+        </template>
+        Please finish test in two modes (keydrop and normal) to continue
+      </q-banner>
+
+      <q-banner 
+        v-if="!canDownload && testCompleted"
+        class="q-mx-xl q-my-md bg-primary text-white rounded-borders">
+        <template v-slot:avatar>
+          <q-icon name="info" color="white" />
+        </template>
+        Please fill in the feedback form to continue
+      </q-banner>
+
+      <q-banner 
+        v-if="canDownload"
+        class="q-mx-xl q-my-md bg-primary text-white rounded-borders">
+        <template v-slot:avatar>
+          <q-icon name="task_alt" color="white" />
+        </template>
+        Thank you, we appreciate completing the test. Please download and send the results to us.
+      </q-banner>
 
       <q-separator v-if="games.length > 0" inset class="q-my-md" />
       <div v-if="games.length > 0">
@@ -118,6 +156,10 @@ export default defineComponent({
   },
 
   computed: {
+
+    testCompleted: function () {
+      return (new Set(this.games.map((el) => {return el.mode}))).size >= 2;
+    },
 
     demoCompleted: {
       get() {

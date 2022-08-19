@@ -7,8 +7,12 @@ const routes = [{
         component: () => import ('layouts/Intro.vue')
     },
     {
-        path: '/write',
-        component: () => import ('layouts/FreeWriting.vue')
+        path: '/demo',
+        component: () => import ('layouts/Demo.vue')
+    },
+    {
+        path: '/demo2',
+        component: () => import ('layouts/Demo2.vue')
     },
     {
         path: '/feedback',

@@ -29,15 +29,15 @@
         @touchstart="original_touchstart(key)"
         @touchend="original_touchend(key)"
         @touchcancel="original_touchcancel(key)"
-        :style="key.style"
+        :style="key.style.concat(key.key==key.original_key?'color:black;':'color:#777;')"
         :class="[key.class, {'original': key.original_show}]"
       >
-        <div>{{key.original_label.toUpperCase()}}</div>
+        <div>{{key.original_label.toUpperCase()}}</div><!-- primary character -->
         <div 
           class="btn-original"
           :style="{display: key.key==key.original_key?'none':'block'}"
         >
-          {{key.original_show?key.original_label.toUpperCase():key.label.toUpperCase()}}
+          {{key.original_show?key.original_label.toUpperCase():key.label.toUpperCase()}}<!-- secondary character -->
         </div>
       </div>
     </div>
@@ -297,11 +297,11 @@ export default defineComponent({
       'm'         : {row: 2, col: 7},
       'backspace' : {row: 2, col: 8},
       'numeric'   : {row: 3, col: 0},
-      'comma'     : {row: 3, col: 1},
+      ','     : {row: 3, col: 1},
       'emoji'     : {row: 3, col: 2},
-      'space'     : {row: 3, col: 3},
-      'dot'       : {row: 3, col: 4},
-      'enter'     : {row: 3, col: 5},
+      ' '     : {row: 3, col: 3},
+      '.'       : {row: 3, col: 4},
+      '\n'     : {row: 3, col: 5},
     }
 
     // sasiedzi 
@@ -335,11 +335,11 @@ export default defineComponent({
       'm'         : ['n', 'k'],
       'backspace' : [],
       'numeric'   : [],
-      'comma'     : [],
+      ','     : [],
       'emoji'     : [], 
-      'space'     : [],
-      'dot'       : [],
-      'enter'     : [],
+      ' '     : [],
+      '.'       : [],
+      '\n'     : [],
     }
 
     this.key_style = {
@@ -372,11 +372,11 @@ export default defineComponent({
       'm'         : {class: 'btn-row3', style: ''},
       'backspace' : {class: 'btn-shift', style: ''},
       'numeric'   : {class: 'btn-shift', style: ''},
-      'comma'     : {class: 'btn-row4', style: ''},
+      ','     : {class: 'btn-row4', style: ''},
       'emoji'     : {class: 'btn-row4', style: ''},
-      'space'     : {class: 'btn-space', style: ''},
-      'dot'       : {class: 'btn-row4', style: ''},
-      'enter'     : {class: 'btn-shift', style: ''},
+      ' '     : {class: 'btn-space', style: ''},
+      '.'       : {class: 'btn-row4', style: ''},
+      '\n'     : {class: 'btn-shift', style: ''},
     }
 
     this.key_labels = {
@@ -409,11 +409,11 @@ export default defineComponent({
       'm'         : 'm', 
       'backspace' : '⌫', 
       'numeric'   : '', 
-      'comma'     : ',',
+      ','     : ',',
       'emoji'     : '🙂', 
-      'space'     : '_', 
-      'dot'       : '.', 
-      'enter'     : '⏎',   
+      ' '     : '_', 
+      '.'       : '.', 
+      '\n'     : '⏎',   
     }
 
     this.key_actions = {
@@ -446,14 +446,14 @@ export default defineComponent({
       'm'         : this.keyFunWraper(this.keyClicked),
       'backspace' : this.keyFunWraper(this.backspaceClicked),
       'numeric'   : this.keyFunWraper(this.numClicked),
-      'comma'     : this.keyFunWraper(this.commaClicked),
+      ','     : this.keyFunWraper(this.commaClicked),
       'emoji'     : this.keyFunWraper(this.keyClicked),
-      'space'     : this.keyFunWraper(this.spaceClicked),
-      'dot'       : this.keyFunWraper(this.dotClicked),
-      'enter'     : this.keyFunWraper(this.enterClicked),
+      ' '     : this.keyFunWraper(this.spaceClicked),
+      '.'       : this.keyFunWraper(this.dotClicked),
+      '\n'     : this.keyFunWraper(this.enterClicked),
     }
 
-    this.standard_keys = ['shift', 'backspace', 'numeric', 'comma', 'emoji', 'space', 'dot', 'enter']
+    this.standard_keys = ['shift', 'backspace', 'numeric', ',', 'emoji', ' ', '.', '\n']
 
   },
 
@@ -714,7 +714,8 @@ export default defineComponent({
       })
       let colors_map = staaate.map((el) => {
         if(el > 1) { // jezeli wielkosc grupy wieksza niz 1 to kolorujemy
-          return colors[color_idx++]
+          //return colors[color_idx++] // coloring
+          return false
         } else {
           return false
         }

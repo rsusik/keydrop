@@ -162,19 +162,32 @@ export default defineComponent({
   created() {
     this.gamemode = this.$route.params.mode ?? 'keydrop'
     this.sentences = [
-      // 'this is',
-      // 'the',
-      // 'here',
-      'Which form of transport do you prefer to use',
-      'Every month I spend hundreds of dollars on gas insurance and repairs',
-      'An irrevocable letter of credit ensures that the seller gets paid in time',
-      'And since you are already a valued customer there should be no trouble in processing you application for this loan',
-      'Would you prefer helping with the writing part or is programming more your thing',
-      'We could hire a car and travel around the interior of Australia for several days',
-      'All of your coursework is important including everything from attendance and homework to all of your test results for the semester',
-      'It happened at the crossing just behind his house',
-      'Your professor has placed this book on reserve',
-      'I make around one hundred thousand dollars per year'
+      'this is',
+      'the',
+      'here',
+
+      // 'which form of transport do you prefer to use',
+      // 'every month i spend hundreds of dollars on gas insurance and repairs',
+      // 'an irrevocable letter of credit ensures that the seller gets paid in time',
+      // 'and since you are already a valued customer there should be no trouble in processing you application for this loan',
+      // 'would you prefer helping with the writing part or is programming more your thing',
+      // 'we could hire a car and travel around the interior of australia for several days',
+      // 'all of your coursework is important including everything from attendance and homework to all of your test results for the semester',
+      // 'it happened at the crossing just behind his house',
+      // 'your professor has placed this book on reserve',
+      // 'i make around one hundred thousand dollars per year'
+
+      // // ORGINAL (no lower case)
+      // 'Which form of transport do you prefer to use',
+      // 'Every month I spend hundreds of dollars on gas insurance and repairs',
+      // 'An irrevocable letter of credit ensures that the seller gets paid in time',
+      // 'And since you are already a valued customer there should be no trouble in processing you application for this loan',
+      // 'Would you prefer helping with the writing part or is programming more your thing',
+      // 'We could hire a car and travel around the interior of Australia for several days',
+      // 'All of your coursework is important including everything from attendance and homework to all of your test results for the semester',
+      // 'It happened at the crossing just behind his house',
+      // 'Your professor has placed this book on reserve',
+      // 'I make around one hundred thousand dollars per year'
     ]
     this.startGameDelayCounter = 3
     this.gameFinished = false
@@ -235,7 +248,8 @@ export default defineComponent({
         this.sentenceTimeStop = Date.now()
         this.completedSentences.push({
           'sentence': this.sentence,
-          'text': this.text,
+          'text': this.text, // should be the same as sentence
+          'idx': this.sentenceIdx,
           'startTime': this.sentenceTimeStart,
           'endTime': this.sentenceTimeStop,
           'pressedKeys': this.pressedKeys
@@ -270,6 +284,8 @@ export default defineComponent({
           'original_label': key.original_label
         }, 
         'expected_key': this.sentence[this.text.length-1],
+        'position': this.text.length-1,
+        'correct': !this.isError && key.key == this.sentence[this.text.length-1],
         'time': Date.now(),
         // 'text': this.text, 
         // 'sentence': this.sentence

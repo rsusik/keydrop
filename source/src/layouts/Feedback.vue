@@ -77,7 +77,7 @@
 
         <div>
           <h2>
-            7. What is you phone model?
+            7. What is your phone model?
           </h2>
           <div class="q-gutter-sm">
             <q-input v-model="phone" type="text" label="Phone model (e.g. Redmi Note 10 Pro)" outlined />

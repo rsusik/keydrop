@@ -189,11 +189,11 @@ export default defineComponent({
       'm'         : {row: 2, col: 7},
       'backspace' : {row: 2, col: 8},
       'numeric'   : {row: 3, col: 0},
-      'comma'     : {row: 3, col: 1},
+      ','     : {row: 3, col: 1},
       'emoji'     : {row: 3, col: 2},
-      'space'     : {row: 3, col: 3},
-      'dot'       : {row: 3, col: 4},
-      'enter'     : {row: 3, col: 5},
+      ' '     : {row: 3, col: 3},
+      '.'       : {row: 3, col: 4},
+      '\n'     : {row: 3, col: 5},
     }
 
     this.key_style = {
@@ -226,11 +226,11 @@ export default defineComponent({
       'm'         : {class: 'btn-row3', style: ''},
       'backspace' : {class: 'btn-shift', style: ''},
       'numeric'   : {class: 'btn-shift', style: ''},
-      'comma'     : {class: 'btn-row4', style: ''},
+      ','     : {class: 'btn-row4', style: ''},
       'emoji'     : {class: 'btn-row4', style: ''},
-      'space'     : {class: 'btn-space', style: ''},
-      'dot'       : {class: 'btn-row4', style: ''},
-      'enter'     : {class: 'btn-shift', style: ''},
+      ' '     : {class: 'btn-space', style: ''},
+      '.'       : {class: 'btn-row4', style: ''},
+      '\n'     : {class: 'btn-shift', style: ''},
     }
 
     this.key_labels = {
@@ -263,11 +263,11 @@ export default defineComponent({
       'm'         : 'm', 
       'backspace' : '⌫', 
       'numeric'   : '', 
-      'comma'     : ',',
+      ','     : ',',
       'emoji'     : '🙂', 
-      'space'     : '_', 
-      'dot'       : '.', 
-      'enter'     : '⏎',   
+      ' '     : '_', 
+      '.'       : '.', 
+      '\n'     : '⏎',   
     }
 
     this.key_actions = {
@@ -300,14 +300,14 @@ export default defineComponent({
       'm'         : this.keyFunWraper(this.keyClicked),
       'backspace' : this.keyFunWraper(this.backspaceClicked),
       'numeric'   : this.keyFunWraper(this.numClicked),
-      'comma'     : this.keyFunWraper(this.commaClicked),
+      ','     : this.keyFunWraper(this.commaClicked),
       'emoji'     : this.keyFunWraper(this.keyClicked),
-      'space'     : this.keyFunWraper(this.spaceClicked),
-      'dot'       : this.keyFunWraper(this.dotClicked),
-      'enter'     : this.keyFunWraper(this.enterClicked),
+      ' '     : this.keyFunWraper(this.spaceClicked),
+      '.'       : this.keyFunWraper(this.dotClicked),
+      '\n'     : this.keyFunWraper(this.enterClicked),
     }
 
-    this.standard_keys = ['shift', 'backspace', 'numeric', 'comma', 'emoji', 'space', 'dot', 'enter']
+    this.standard_keys = ['shift', 'backspace', 'numeric', ',', 'emoji', ' ', '.', '\n']
 
   },
 
