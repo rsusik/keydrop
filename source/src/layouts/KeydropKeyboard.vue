@@ -32,12 +32,12 @@
         :style="key.style.concat(key.key==key.original_key?'color:black;':'color:#777;')"
         :class="[key.class, {'original': key.original_show}]"
       >
-        <div>{{key.original_label.toUpperCase()}}</div><!-- primary character -->
+        <div>{{key.original_label.toLowerCase()}}</div><!-- primary character -->
         <div 
           class="btn-original"
           :style="{display: key.key==key.original_key?'none':'block'}"
         >
-          {{key.original_show?key.original_label.toUpperCase():key.label.toUpperCase()}}<!-- secondary character -->
+          {{key.original_show?key.original_label.toLowerCase():key.label.toLowerCase()}}<!-- secondary character -->
         </div>
       </div>
     </div>

@@ -31,7 +31,7 @@
         :style="key.style"
         :class="[key.class, {'original': key.original_show}]"
       >
-        {{key.label.toUpperCase()}}
+        {{key.label.toLowerCase()}}
         <div 
           class="btn-original"
           :style="{display: key.key==key.original_key?'none':'block'}"

@@ -34,21 +34,21 @@
       </router-link>
       <router-link 
         class="menu-item" 
-        to="/test/keydrop"
-        :class="{'link-disabled': !demoCompleted}"
-      >Test (keydrop)</router-link>
-      <router-link 
-        class="menu-item" 
         to="/test/normal"
         :class="{'link-disabled': !demoCompleted}"
       >Test (normal)</router-link>
+      <router-link 
+        class="menu-item" 
+        to="/test/keydrop"
+        :class="{'link-disabled': !demoCompleted}"
+      >Test (keydrop)</router-link>
       <router-link 
         class="menu-item" 
         to="/feedback"
         v-if="testCompleted"
       >Feedback</router-link>
       <router-link 
-        v-if="games.length > 0 && canDownload" 
+        v-if="testCompleted && canDownload" 
         class="menu-item" 
         to="/getdata"
       >GET DATA</router-link>
@@ -90,7 +90,7 @@
       </q-banner>
 
       <q-banner 
-        v-if="canDownload"
+        v-if="canDownload && testCompleted"
         class="q-mx-xl q-my-md bg-primary text-white rounded-borders">
         <template v-slot:avatar>
           <q-icon name="task_alt" color="white" />

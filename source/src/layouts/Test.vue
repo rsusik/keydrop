@@ -162,20 +162,20 @@ export default defineComponent({
   created() {
     this.gamemode = this.$route.params.mode ?? 'keydrop'
     this.sentences = [
-      'this is',
-      'the',
-      'here',
+      // 'this is',
+      // 'the',
+      // 'here',
 
-      // 'which form of transport do you prefer to use',
-      // 'every month i spend hundreds of dollars on gas insurance and repairs',
-      // 'an irrevocable letter of credit ensures that the seller gets paid in time',
-      // 'and since you are already a valued customer there should be no trouble in processing you application for this loan',
-      // 'would you prefer helping with the writing part or is programming more your thing',
-      // 'we could hire a car and travel around the interior of australia for several days',
-      // 'all of your coursework is important including everything from attendance and homework to all of your test results for the semester',
-      // 'it happened at the crossing just behind his house',
-      // 'your professor has placed this book on reserve',
-      // 'i make around one hundred thousand dollars per year'
+      'which form of transport do you prefer to use',
+      'every month i spend hundreds of dollars on gas insurance and repairs',
+      'an irrevocable letter of credit ensures that the seller gets paid in time',
+      'and since you are already a valued customer there should be no trouble in processing you application for this loan',
+      'would you prefer helping with the writing part or is programming more your thing',
+      'we could hire a car and travel around the interior of australia for several days',
+      'all of your coursework is important including everything from attendance and homework to all of your test results for the semester',
+      'it happened at the crossing just behind his house',
+      'your professor has placed this book on reserve',
+      'i make around one hundred thousand dollars per year'
 
       // // ORGINAL (no lower case)
       // 'Which form of transport do you prefer to use',
