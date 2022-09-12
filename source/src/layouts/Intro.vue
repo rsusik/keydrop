@@ -10,26 +10,14 @@
       <p>This application is a prototype of a keyboard that adapts to written text.</p>
       <h2>Keyboard</h2>
       <p>
-        The keyboard layout changes dynamically while the user types the text. 
-        It removes the letters that are unlikely to appear, 
-        so it is less likely that the user mistakenly taps the wrong key.
+        The keyboard layout changes dynamically while the user types the text. It removes the letters that are unlikely to appear to reduce the wrong key taps.
       </p>
       <p>
-        While the user hits the keys, 
-        the letters that are unlinkely to appear next
-        are wiped out from the keys and in their place
-        apper the letters that likely to appear.
-        The user can still type all of the letters
-        (for those keys which letter has changed) 
-        by holding the key down.
-        In the below example user typed three characters, "thi",
-        so the keyboard leaves letters {s, r, c, n}, 
-        which are likely to appear next, 
-        and also {i, o, p, l} 
-        which are too far from possible characters
-        changing them does not seem to help in typing.
-        Note: the colours are removed in the keydrop 
-        as we find it distracting.
+        While the user taps keys, the letters that are unlikely to appear next are replaced with predicted ones. 
+        The user can still type all the letters (for those keys whose letter has changed) by holding the key down. 
+        In the below example user entered three characters, "thi", so the keyboard leaves letters {s, r, c, n}, which are likely to appear next, and also {i, o, p, l} which are too far from possible characters changing them does not seem to help in typing. 
+        <br />
+        <!--i>Note: the colors are removed in the Keydrop as we find it distracting.</i-->
         <!--which are also unlikely to appear but changing them doesn't seem to 
         help in typying.
         so he likely wants to type words such as "that", "the", "three", "thuesday", "this", "those", etc. 
@@ -50,7 +38,7 @@
       <h2>Test</h2>
       <p>
         This application tests the speed and correctness of typing 
-        using a regular keyboard (similar to gboard) and keydrop.
+        using a regular keyboard (similar to a gboard) and keydrop.
       </p>
       <p>
         There are two modes (tests) available from the main menu:
@@ -61,14 +49,19 @@
         If you wish to participate in the tests,
         please perform them for both modes, 
         then fill in the feedback form,
-        and send the results back to us <a :href="`mailto:${em}`">{{em}}</a>.
+        and send the results back to us at <a :href="`mailto:${em}`">{{em}}</a>.
       </p>
       <p>
         A test is prepared to evaluate the speed and correctness of typing. 
         The test is straightforward. 
         The application shows the sentence, and the participant has to rewrite it using the chosen keyboard. 
-        To point is to try to rewrite the text as fast as possible with a minimal number of errors. 
-        If the input differs from the given sentence, then the background of the corresponding part is highlighted in red, otherwise in green, as shown below.
+        The point is to try rewrite the text EXACTLY as is displayed and as fast as possible with a minimal number of typos (all typos need to be corrected).
+        If the input differs from the given sentence, then the background of the corresponding part is highlighted in <span style="background-color: #f77">red</span>, otherwise in <span style="background-color: #dfd">green</span>, as shown below.
+        <br />
+        <b><span style="font-size: 1.2em">Important! </span>
+          All text should be rewritten exactly as displayed (no typos are allowed), so if something in red appears, 
+          it should be corrected - removed with backspace and entered correctly.
+        </b>
       </p>
       <div class="col-6">
         <q-img src="game2.png" no-native-menu style="max-width: 456px;">

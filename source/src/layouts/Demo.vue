@@ -24,9 +24,9 @@
           <q-icon name="info" color="white" />
         </template>
         This is a demo. 
-        The timing and progress is at the top of the screen. 
+        The timing and progress are at the top of the screen. 
         The keyboard is at the bottom of the screen. 
-        The aim of the test is to write the text as fast as possible.
+        The test aims to write the text as fast as possible.
       </q-banner>
       <q-banner
         v-if="gameFinished"
@@ -138,7 +138,7 @@ export default defineComponent({
 
   created() {
     this.gamemode = this.$route.params.mode ?? 'keydrop'
-    this.sentence = 'the timing and progress is at the top and the keyboard is at the bottom of the screen and the aim of the test is to write the text as fast as possible'
+    this.sentence = 'the exercise aims to write sentences as fast as possible and make minimal misspellings'
     this.sentenceTimeStart = undefined
     this.sentenceTimeStop = undefined
     this.sentenceTimeElapsed = 0

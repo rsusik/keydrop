@@ -9,16 +9,20 @@
       <div style="margin-top: 10pt;"></div>
       <q-banner 
         class="text-white bg-red q-ma-md"
-        v-if="!$q.platform.is.mobile"
+        v-if="!$q.platform.is.mobile || !isStandalone"
         cclass="text-center"
         rounded
       >
         <template v-slot:avatar>
           <q-icon name="warning" color="white" class="" />
         </template>
+        <div v-if="!$q.platform.is.mobile">
         This app is designated for a phone device. 
         You are currently using a different device. 
-        We encourage you to open this link on your phone and install this (PWA) application.
+        </div>
+        <div v-if="!isStandalone">
+        We encourage you to install it as PWA application. To do this go to browser Settings->Install app (or Add to Home screen)
+        </div>
       </q-banner>
       <router-link 
         class="menu-item intro" 
@@ -156,6 +160,13 @@ export default defineComponent({
   },
 
   computed: {
+
+    isStandalone: function () {
+      if (window.matchMedia('(display-mode: standalone)').matches) {  
+        return true
+      }
+      return false
+    },
 
     testCompleted: function () {
       return (new Set(this.games.map((el) => {return el.mode}))).size >= 2;

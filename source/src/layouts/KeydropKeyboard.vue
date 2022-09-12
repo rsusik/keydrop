@@ -31,7 +31,7 @@
         @touchcancel="original_touchcancel(key)"
         :style="key.style.concat(key.key==key.original_key?'color:black;':'color:#777;')"
         :class="[key.class, {'original': key.original_show}]"
-      >
+      ><!--:style="key.style.concat(key.key==key.original_key?'color:black;':'color:#777;')"-->
         <div>{{key.original_label.toLowerCase()}}</div><!-- primary character -->
         <div 
           class="btn-original"
@@ -700,6 +700,7 @@ export default defineComponent({
           }
         }
       }
+      // let colors = ['#ffe0de', '#defffe', '#e6ffde', '#fffede', '#f3e8ff', '#fff4e8', '#fae4ef', '#f5ebc1', '#f5aff7', '#fcd666', '#ffe6fa', '#f7bea6', '#fabaf5', '#f4ccf8', '#ccf5c5', '#e5e4cb', '#c02750', '#f9166d', '#e4f22c', '#c68065', '#40df8d', '#68ce12', '#9f7ab8', '#945883', '#8d9a11', '#2af87e', '#b58f6f', '#5f35a3', '#0ea4fb', '#a8b289', '#a17289', '#fae4ef', '#7497aa', '#c5af37', '#0cd666', '#8f864a', '#f7bea6', '#9aba15', '#647c58', '#8c35b5', '#45e49b', '#c02750', '#f9166d', '#e4f22c', '#c68065', '#40df8d', '#68ce12', '#9f7ab8', '#945883', '#8d9a11', '#2af87e', '#b58f6f']
       let colors = ['#ffe0de', '#defffe', '#e6ffde', '#fffede', '#f3e8ff', '#fff4e8', '#fae4ef', '#f5ebc1', '#f5aff7', '#fcd666', '#ffe6fa', '#f7bea6', '#fabaf5', '#f4ccf8', '#ccf5c5', '#e5e4cb', '#c02750', '#f9166d', '#e4f22c', '#c68065', '#40df8d', '#68ce12', '#9f7ab8', '#945883', '#8d9a11', '#2af87e', '#b58f6f', '#5f35a3', '#0ea4fb', '#a8b289', '#a17289', '#fae4ef', '#7497aa', '#c5af37', '#0cd666', '#8f864a', '#f7bea6', '#9aba15', '#647c58', '#8c35b5', '#45e49b', '#c02750', '#f9166d', '#e4f22c', '#c68065', '#40df8d', '#68ce12', '#9f7ab8', '#945883', '#8d9a11', '#2af87e', '#b58f6f']
       let color_idx = 0;
       
@@ -714,7 +715,7 @@ export default defineComponent({
       })
       let colors_map = staaate.map((el) => {
         if(el > 1) { // jezeli wielkosc grupy wieksza niz 1 to kolorujemy
-          //return colors[color_idx++] // coloring
+          // return colors[color_idx++] // coloring
           return false
         } else {
           return false
