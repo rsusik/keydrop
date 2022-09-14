@@ -20,7 +20,7 @@
     <div v-for="row in boardView" :key="row" class="kb-row">
       <div v-for="key in row" 
         :key="key" 
-        class="btn" 
+        class="btn myhidden" 
         style="position: relative"
         @mousedown="original_mousedown(key)"
         @mouseup="original_mouseup(key)"
@@ -30,14 +30,16 @@
         @touchcancel="original_touchcancel(key)"
         :style="key.style"
         :class="[key.class, {'original': key.original_show}]"
-      >
+        :data-txt="key.label.toLowerCase()"
+      ><!--
         {{key.label.toLowerCase()}}
-        <div 
-          class="btn-original"
+        --><div 
+          class="btn-original myhidden"
           :style="{display: key.key==key.original_key?'none':'block'}"
-        >
+          :data-txt="key.original_label"
+        ><!--
           {{key.original_label}}
-        </div>
+        --></div>
       </div>
     </div>
   </div>

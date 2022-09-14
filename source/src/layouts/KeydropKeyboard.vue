@@ -23,6 +23,7 @@
         :key="key" 
         class="btn"  
         style="position: relative;"
+        onselectstart="return false;"
         @mousedown="original_mousedown(key)"
         @mouseup="original_mouseup(key)"
         @mouseleave="original_mouseleave(key)"
@@ -32,13 +33,14 @@
         :style="key.style.concat(key.key==key.original_key?'color:black;':'color:#777;')"
         :class="[key.class, {'original': key.original_show}]"
       ><!--:style="key.style.concat(key.key==key.original_key?'color:black;':'color:#777;')"-->
-        <div>{{key.original_label.toLowerCase()}}</div><!-- primary character -->
+        <div class="myhidden" onselectstart="return false;" :data-txt="key.original_label.toLowerCase()"><!--{{key.original_label.toLowerCase()}}--></div><!-- primary character -->
         <div 
-          class="btn-original"
+          class="btn-original myhidden" onselectstart="return false;"
           :style="{display: key.key==key.original_key?'none':'block'}"
-        >
-          {{key.original_show?key.original_label.toLowerCase():key.label.toLowerCase()}}<!-- secondary character -->
-        </div>
+          :data-txt="key.original_show?key.original_label.toLowerCase():key.label.toLowerCase()"
+        ><!--
+          {{key.original_show?key.original_label.toLowerCase():key.label.toLowerCase()}}<!- secondary character 
+        --></div>
       </div>
     </div>
   </div>
@@ -94,16 +96,10 @@ export default defineComponent({
   data() {
     return {
       internal_inp: '',
-      words1: [],
-      words2: [],
-      words3: [],
-      words4: [],
-      wordsx: [],
       charmap1: [],
       charmap2: [],
       charmap3: [],
-      charmap4: [],
-      charmap5: [],
+      charmapLonger: [],
       internal_text: '',
       leftWord: '',
       rightWord: '',
@@ -144,20 +140,6 @@ export default defineComponent({
       }
     },
 
-    words: function() {
-      if (this.inp == undefined || this.inp.length == 0) {
-        return this.words1
-      } else if (this.inp.length == 1) {
-        return this.words2
-      } else if (this.inp.length == 2) {
-        return this.words3
-      } else if (this.inp.length == 3) {
-        return this.words4
-      } else {
-        return this.wordsx
-      } 
-    },
-
     row0: function() {
       return Object.fromEntries(Object.entries(this.keys).filter(([k,v]) => v.row == 0));
     },
@@ -169,14 +151,6 @@ export default defineComponent({
     },
     row3: function() {
       return Object.fromEntries(Object.entries(this.keys).filter(([k,v]) => v.row == 3));
-    },
-
-    wordsLeft: function() {
-      if (this.inp.length < 1) {
-        return new Set()
-      }
-      let res = bsearch.findNext(this.words, this.inp, 0, this.words.length)
-      return res.words
     },
 
     lettersLeft: function() {
@@ -198,22 +172,15 @@ export default defineComponent({
           return findNextLetters(this.charmap2, txt)
         } else if (txt.length == 3) {
           return findNextLetters(this.charmap3, txt)
-        } else if (txt.length == 4) {
-          return findNextLetters(this.charmap4, txt)
-        } else if (txt.length == 5) {
-          return findNextLetters(this.charmap5, txt)
         } else {
-          console.log('No more')
+          return findNextLetters(this.charmapLonger, txt)
         }
       }
 
       if (this.inp.length < 1) {
         return new Set()
-      } else if (this.inp.length < 4 && this.words != undefined) { // TODO: tu raczej co innego ma byc undefined
+      } else if ( ![this.charmap1, this.charmap2, this.charmap3, this.charmapLonger].includes(undefined) ) {
           return findNext(this.inp)
-      } else if (this.words != undefined) {
-        let res = bsearch.findNext(this.words, this.inp, 0, this.words.length)
-        return res.letters
       } else {
         console.log('ERROR: something went wrong.')
         return new Set()
@@ -222,13 +189,6 @@ export default defineComponent({
   },
 
   created() {
-    const getWords = (target, filename) => {
-      axios.get(filename).
-      then( (resp) => {
-        Object.assign(target, resp.data.split('\n'))
-        this.updateBoard()
-      })
-    }
 
     const getNextCharMap = (target, filename) => {
       axios.get(filename).
@@ -241,22 +201,7 @@ export default defineComponent({
     getNextCharMap(this.charmap1, 'mm1.json')
     getNextCharMap(this.charmap2, 'mm2.json')
     getNextCharMap(this.charmap3, 'mm3.json')
-
-    getWords(this.wordsx, 'unigram_words_gt5.txt')
-
-    const generateTree = () => {
-      this.tree = {}
-      for (let word of this.words) {
-        let tmp_tree = this.tree
-        for (let ch of word) {
-          if (Object.keys(tmp_tree).includes(ch)) {
-            tmp_tree = tmp_tree[ch]
-          } else {
-            tmp_tree[ch] = {}
-          }
-        }
-      }
-    }
+    getNextCharMap(this.charmapLonger, 'longer_prefixes.json')
 
     // definiuje wyglad i uklad klawiatury (uklad zostawiamy niezmieniony)
     this.board = [
@@ -595,7 +540,6 @@ export default defineComponent({
 
     keyClicked: function(key) {
       this.inp = this.inp + key.label
-      //this.findSimilar(this.inp)
       this.updateBoard()
     },
 
@@ -629,7 +573,9 @@ export default defineComponent({
       }
       let active_keys_mapped = this.map_keys(active_keys).reverse()
       let tmp_board = this.board.map(a => {return [...a]})
+      // console.log(active_keys_mapped.map(a => {return {label:a.label, row:a.row, col:a.col}}))
       while(active_keys_mapped.length > 0) {
+        // console.log(active_keys_mapped.length)
         let key = active_keys_mapped.pop()
         let neigh = key.neigh.map((el) => { return {
           row: this.key_positions[el].row,
@@ -710,7 +656,7 @@ export default defineComponent({
         return flatt.map((k) => {
           return k.key == el
         }).reduce((prev, next) => {
-          return prev + next
+          return prev
         })
       })
       let colors_map = staaate.map((el) => {
@@ -760,24 +706,6 @@ export default defineComponent({
         action: this.key_actions[el],
       }})
     },
-
-    findSimilar: function(inp) {
-      let res = this.wordsLeft
-
-      let mySet = this.lettersLeft
-
-      if (res.size > 0) {
-        this.leftWord = res[0]
-      } else {
-        this.leftWord = ''
-      }
-      if (res.size > 1) {
-        this.rightWord = res[1]
-      } else {
-        this.rightWord = ''
-      }
-
-    }
   },
 
 })

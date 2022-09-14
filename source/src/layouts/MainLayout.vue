@@ -21,9 +21,10 @@
         You are currently using a different device. 
         </div>
         <div v-if="!isStandalone">
-        We encourage you to install it as PWA application. To do this go to browser Settings->Install app (or Add to Home screen)
+        Please install PWA application. To do this go to browser Settings->Install app (or Add to Home screen)
         </div>
       </q-banner>
+      <span><!-- v-if="isStandalone && $q.platform.is.mobile"-->
       <router-link 
         class="menu-item intro" 
         to="/intro"
@@ -122,12 +123,13 @@
           </tbody>
         </table>
       </div>
+      </span>
     </q-page-container>
 
     <q-footer class="footer">
       <q-toolbar>
         <q-toolbar-title class="text-center">
-          <q-icon name="img:logo.svg#icon-1|0 0 80 380" style="height:24px; width:114px;" />
+          <q-icon name="img:logo.svg#icon-1|0 0 80 380" style="height:24px; width:114px;" /> <span style="font-size: 1rem">v2</span>
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>

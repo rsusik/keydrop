@@ -69,7 +69,7 @@
       </div>
       <h2>Demo</h2>
       <p>
-        Train typing with the Keydrop in <router-link to="/write">this demo</router-link>
+        Train typing with the Keydrop in <router-link to="/demo">this demo</router-link>
         before starting the test.
       </p>
     </q-page-container>
