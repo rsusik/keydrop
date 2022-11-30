@@ -28,8 +28,9 @@ For code execution following requirements needs to be met:
 
 ## Testing
 
-We appreciate everyone who helps us in testing. If you are interested, please visit a link at TODO
+_UPDATE: Tests are completed_
 
-Once you complete the test, please send us the results at robert.susik@p.lodz.pl.
+We appreciate everyone who helped us with testing. 
 
+The testing application is still available at [rsusik.github.io/test](https://rsusik.github.io/test) (works only on cell phone as PWA), but we no longer collect any data.
 
