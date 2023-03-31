@@ -34,7 +34,7 @@ The testing application is still available at [rsusik.github.io/test](https://rs
 
 ## Appendix
 
-We conducted an experiment involving 54 participants, to find out if the Keydrop keyboard layout is competitive to the Gboard layout in terms of typing speed and the number. The task was to manually copy a number of English sentences; typos were highlighted and had to be fixed immediately.
+We conducted an experiment involving 54 participants, to find out if the Keydrop keyboard layout is competitive to the gboard-like QWERTY layout in terms of typing speed and the number of typos. The task was to manually copy English sentences; typos were highlighted and had to be fixed immediately.
 Results showed that, on average, users type by 6% faster, making 33% fewer typos.
 
 The list of participants' cellphones used in the experiment:
