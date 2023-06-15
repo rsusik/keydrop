@@ -14,6 +14,10 @@ This project is a prototype of a keyboard developed for research purposes.
 It has minimal error checking, and some bugs are possible. 
 There is no warranty, and you use it at your own risk.
 
+## Paper
+
+The article titled "Keydrop: Dynamic Keyboard Layout for Faster Typing and Fewer Typos" was published in _International Journal of Human–Computer Interaction_ (https://www.tandfonline.com/doi/full/10.1080/10447318.2023.2215624).
+
 ## Requirements
 
 To run the application, only a web browser is needed, 
@@ -30,7 +34,23 @@ For code execution following requirements needs to be met:
 
 The testing application is still available at [rsusik.github.io/test](https://rsusik.github.io/test) (works only on cell phone as PWA), but we no longer collect any data.
 
+## Citing
 
+```
+@article{doi:10.1080/10447318.2023.2215624,
+    author = {Robert Susik and Szymon Grabowski},
+    title = {Keydrop: Dynamic Keyboard Layout for Faster Typing and Fewer Typos},
+    journal = {International Journal of Human–Computer Interaction},
+    volume = {0},
+    number = {0},
+    pages = {1-9},
+    year  = {2023},
+    publisher = {Taylor & Francis},
+    doi = {10.1080/10447318.2023.2215624},
+    URL = {https://doi.org/10.1080/10447318.2023.2215624},
+    eprint = {https://doi.org/10.1080/10447318.2023.2215624}
+}
+```
 
 ## Appendix
 
